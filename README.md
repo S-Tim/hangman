@@ -9,3 +9,5 @@ used in the *Comparator* to compare it to other strategies.
 Use *word_extractor.py* to refine the list of words you wish to be included in the game.
 
 To install requirements: `pip install -r requirements.txt`
+
+Word list source: https://github.com/dwyl/english-words
