@@ -1,0 +1,5 @@
+.idea/
+*.iml
+hangman_words.txt
+__pycache__/
+
