@@ -7,7 +7,6 @@ from player import Player
 class ExpectedInformationGainPlayer(Player):
     def guess(self, state: str, guesses: list[str], possible_words: list[str]) -> str:
         possible_guesses = [c for c in string.ascii_lowercase if c not in guesses]
-
         remaining_solutions = self.matches(state, guesses, possible_words)
         remaining_solutions_length = len(remaining_solutions)
         remaining_entropy = math.log2(remaining_solutions_length) if remaining_solutions_length != 0 else 0

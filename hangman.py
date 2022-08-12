@@ -1,6 +1,6 @@
-from comparator import Comparator
-from expected_information_gain_player import ExpectedInformationGainPlayer
 from human_player import HumanPlayer
+from multiplayer import Multiplayer
+from ordered_player import OrderedPlayer
 from random_player import RandomPlayer
 
 
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     with open('hangman_words.txt') as f:
         possible_words = f.read().splitlines()
 
-    comparator = Comparator(ExpectedInformationGainPlayer(), RandomPlayer(), possible_words)
-    comparator.compare()
-    print(comparator)
+    game = Multiplayer([HumanPlayer(), OrderedPlayer()], possible_words, 1)
+    game.play_multi()
+    #print(comparator)
     # game = Game(HumanPlayer(), possible_words)
