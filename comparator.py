@@ -3,13 +3,14 @@ import random
 from tqdm import tqdm
 
 from game import Game
+from multiplayer_game import MultiplayerGame
 from player import Player
 
 
 class Comparator:
-    def __init__(self, player_one: Player, player_two: Player, possible_words: list[str], number_of_games: int = 10):
-        self.player_one = player_one
-        self.player_two = player_two
+    def __init__(self, players: list[Player], possible_words: list[str], number_of_games: int = 10):
+        self.player_one = players[0]
+        self.player_two = players[1]
         self.possible_words = possible_words
         self.number_of_games = number_of_games
         self.player_one_results = []
@@ -23,6 +24,12 @@ class Comparator:
             self.player_one_results.append(Game(self.player_one, self.possible_words, solution).play())
             self.player_two_results.append(Game(self.player_two, self.possible_words, solution).play())
 
+    def play_multi(self):
+        for _ in tqdm(range(self.number_of_games)):
+            solution = random.choice(self.possible_words)
+            self.solutions.append(solution)
+            MultiplayerGame([self.player_one, self.player_two], self.possible_words, solution).play()
+            
     def average_scores(self):
         wrong_guesses_p1 = sum([gr[1] for gr in self.player_one_results]) / len(self.player_one_results)
         guesses_p1 = sum([gr[0] for gr in self.player_one_results]) / len(self.player_one_results)
